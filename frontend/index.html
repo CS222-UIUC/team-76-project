@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game & Rate</title>
+    <style>
+        .img {
+            width: 60px;
+            display: block;
+            margin: auto;    
+        }
+        .title {
+            font-size: 40px;
+            font-family: Georgia;
+            margin: auto;
+        }
+        .search {
+            font-size: 20px;
+            font-family: Georgia;
+            margin: auto;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body style= "background-color: rgb(172, 211, 255);">
+    <body class="title">
+        <img class= "img" src="gamer.png"> 
+        <p style="text-align: center;">
+            Game & Rate
+        </p>
+        <input class = "search" type="text" placeholder="Search for a game!">
+    </body>
+    <h1>
+        1
+    </h1>
+    <input type="text" id="input">
+    <button id="button">This should connect to the server</button>
+    <h1>
+        Text from server: <span id="input3"></span>
+    </h1>
+    <h1>
+        2
+    </h1>
+    <input type="text" id="input2">
+    <button id="button2">This doesn't do anything</button>
+</body>
+<script>
+    const input = document.getElementById("input");
+    const button = document.getElementById("button");
+    const responseAPI = async (e) => {
+        e.preventDefault(); //prevent refresh when clicking button
+        const res = await fetch('http://localhost:4000/message', {
+        method: 'GET'
+    }) //get data
+    console.log(res); //log data
+    const data = await res.json(); //save data to data
+    input3.value = data.message; //setting input to value
+    }
+    button.addEventListener("click", responseAPI)
+</script>
+</html>
