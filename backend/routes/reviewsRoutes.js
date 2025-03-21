@@ -4,7 +4,7 @@ const db = require('../db.js')
 const router = express.Router()
 
 // get all reviews on a game id
-router.get('/:gameid', (req, res) => {
+router.get('/:gameid', (req, res) => { 
     
 })
 
@@ -15,7 +15,7 @@ router.post('/:gameid', (req, res) => {
 
 // update a review
 router.put('/:reviewid', (req, res) => {
-
+ 
 })
 
 // delete a review

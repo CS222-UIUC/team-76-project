@@ -1,3 +1,4 @@
+/* eslint-env node */
 const app = require('./app'); // ✅ Import the Express app
 const PORT = process.env.PORT || 5000;
 
