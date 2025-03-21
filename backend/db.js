@@ -1,4 +1,4 @@
-import {DatabaseSync} from 'node:sqlite'
+const { DatabaseSync } = require('node:sqlite')
 const db = new DatabaseSync(':memory:')
 
 db.exec(`
@@ -28,4 +28,4 @@ db.exec(`
     )
 `)
 
-export default db
+module.exports = db;

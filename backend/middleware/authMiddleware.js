@@ -1,5 +1,5 @@
-function authMiddlewar (req, res, next) {
+function authMiddleware (req, res, next) {
     next()
 }
 
-export default authMiddlewar
+module.exports = authMiddleware;

@@ -1,5 +1,5 @@
-import express from 'express'
-import db from '../db.js'
+const express = require('express')
+const db = require('../db.js')
 
 const router = express.Router()
 
@@ -12,3 +12,5 @@ router.get('/all', (req, res) => {
 router.get('/:id', (req, res) => {
 
 })
+
+module.exports = router;

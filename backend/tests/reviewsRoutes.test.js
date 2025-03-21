@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('../server.js')
+const app = require('../app.js')
 // const { default: test } = require('node:test');
 // const { exportAllDeclaration } = require('@babel/types');
 
