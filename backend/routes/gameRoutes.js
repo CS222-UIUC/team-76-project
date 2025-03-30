@@ -23,6 +23,7 @@ async function getGames(){
         if (!ACCESS_TOKEN) await getIGDBAccess();
         console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
         const response = await axios.post('https://api.igdb.com/v4/games', 
+            `fields *;`,
             {
                 headers: {
                     'Client-ID': process.env.CLIENT_ID,
