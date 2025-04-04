@@ -18,12 +18,12 @@ async function getIGDBAccess() {
     }
 }
 
-async function getGames(){
+async function getGames(genre){
     try {
         if (!ACCESS_TOKEN) await getIGDBAccess();
         console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
         const response = await axios.post('https://api.igdb.com/v4/games', 
-            `fields *;`,
+            `fields *; where genres = (${genre});`,
             {
                 headers: {
                     'Client-ID': process.env.CLIENT_ID,
@@ -44,6 +44,12 @@ async function getGames(){
 // get all games
 router.get('/all', async (req, res) => { 
     const games = await getGames();
+    res.json(games);
+})
+
+router.get('/genre/:genre', async (req, res) => {
+    const { genre } = req.params;
+    const games = await getGames(genre);
     res.json(games);
 })
 
