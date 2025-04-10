@@ -4,23 +4,42 @@ const db = require('../db.js')
 const router = express.Router()
 
 // get all reviews on a game id
-router.get('/:gameid', (req, res) => { 
-    
+router.get('/', (req, res) => { 
+    const { game_id } = req.body;
+
+    const getReviews = db.prepare(`SELECT * FROM reviews WHERE game_id = ?`);
+    const reviews = getReviews.all(game_id);
+    res.json(reviews)
 })
 
 // create a new review on a game id
-router.post('/:gameid', (req, res) => {
+router.post('/', (req, res) => {
+    const { rating, review, game_id } = req.body;
 
+    const insertReview = db.prepare(`INSERT INTO reviews (user_id, game_id, review, rating) VALUES (?, ?, ?, ?)`);
+    const result = insertReview.run(req.user_id, game_id, review, rating);
+
+    res.json({id: result.lastInsertRowid, rating, review, completed: 0});
 })
 
 // update a review
-router.put('/:reviewid', (req, res) => {
- 
+router.put('/:review_id', (req, res) => {
+    const { review_id } = req.params;
+    const { rating, review } = req.body;
+
+    const updatedReview = db.prepare(`UPDATE reviews SET rating = ?, review = ? WHERE id = ?`);
+    updatedReview.run(rating, review, review_id);
+
+    res.json({message: "Updated review"});
 })
 
 // delete a review
-router.delete('/:reviewid', (req, res) => {
+router.delete('/:review_id', (req, res) => {
+    const { review_id } = req.params;
 
+    const deleteReview = db.prepare(`DELETE FROM reviews WHERE id = ?`);
+    deleteReview.run(review_id)
+    res.json({message: "Deleted"})
 })
 
 module.exports = router;
