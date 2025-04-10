@@ -13,10 +13,13 @@ POST http://localhost:5000/reviews/
 Content-Type: application/json
 
 {
-    "rating": 5,
+    "rating": 2,
     "review": "great game",
     "game_id": 57016
 }
+
+### GET /reviews/rating/57016
+GET http://localhost:5000/reviews/rating/57016
 
 ### GET /reviews/
 GET http://localhost:5000/reviews/

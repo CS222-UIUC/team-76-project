@@ -3,6 +3,7 @@ const path = require('path');
 const gameRoutes = require('./routes/gameRoutes.js');
 const reviewsRoutes = require('./routes/reviewsRoutes.js');
 const authMiddleware = require('./middleware/authMiddleware.js');
+const authRoutes = require('./routes/authRoutes.js');
 
 const app = express();
 
@@ -18,5 +19,8 @@ app.use('/game', authMiddleware, gameRoutes);
 
 // CRUD actions on reviews, require JWT auth
 app.use('/reviews', authMiddleware, reviewsRoutes);
+
+app.use('/auth', authRoutes)
+
 
 module.exports = app; 

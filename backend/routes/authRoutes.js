@@ -1,6 +1,6 @@
 const express = require('express')
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const db = require('../db.js') 
 
 const router = express.Router()

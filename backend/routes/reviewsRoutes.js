@@ -12,6 +12,14 @@ router.get('/', (req, res) => {
     res.json(reviews)
 })
 
+router.get('/rating/:game_id', (req, res) => {
+    const { game_id } = req.params;
+
+    const getAvgRating = db.prepare(`SELECT AVG(rating) as avgRating FROM reviews WHERE game_id = ?`);
+    const row = getAvgRating.get(game_id);
+    res.json({ averageRating: row?.avgRating ?? null });
+})
+
 // create a new review on a game id
 router.post('/', (req, res) => {
     const { rating, review, game_id } = req.body;
