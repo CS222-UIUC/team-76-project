@@ -8,6 +8,9 @@ GET http://localhost:5000/game/id/57016
 ### GET /game/search?q="zelda"
 GET http://localhost:5000/game/search?q=zelda
 
+### GET /game/cover/57016
+GET http://localhost:5000/game/cover/1025
+
 ### POST /reviews/
 POST http://localhost:5000/reviews/
 Content-Type: application/json

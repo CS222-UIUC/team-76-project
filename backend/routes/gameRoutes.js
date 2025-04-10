@@ -23,7 +23,7 @@ async function getGames(genre){
         if (!ACCESS_TOKEN) await getIGDBAccess();
         console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
         const response = await axios.post('https://api.igdb.com/v4/games', 
-            `fields *; where genres = (${genre});`,
+            `fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos; where genres = (${genre});`,
             {
                 headers: {
                     'Client-ID': process.env.CLIENT_ID,
@@ -45,7 +45,7 @@ async function getGamesID(ID){
         if (!ACCESS_TOKEN) await getIGDBAccess();
         console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
         const response = await axios.post('https://api.igdb.com/v4/games', 
-            `fields *; where id = (${ID});`,
+            `fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos; where id = (${ID});`,
             {
                 headers: {
                     'Client-ID': process.env.CLIENT_ID,
@@ -67,7 +67,7 @@ async function getGamesSearch(query){
         if (!ACCESS_TOKEN) await getIGDBAccess();
         console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
         const response = await axios.post('https://api.igdb.com/v4/games', 
-            `search "${query}"; fields *;`,
+            `search "${query}"; fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos;`,
             {
                 headers: {
                     'Client-ID': process.env.CLIENT_ID,
@@ -120,5 +120,9 @@ router.get('/search/', async (req, res) => {
     const games = await getGamesSearch(query);
     res.json(games);
 })
+
+// COVER LINK: 
+// https://images.igdb.com/igdb/image/upload/t_720p/<image_id>.jpg
+
 
 module.exports = router;
