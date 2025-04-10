@@ -89,6 +89,13 @@ async function getGamesSearch(query){
 router.get('/all', async (req, res) => { 
     const games = await getGames();
     res.json(games);
+
+})
+
+router.get('/genre/:genre', async (req, res) => {
+    const { genre } = req.params;
+    const games = await getGames(genre);
+    res.json(games);
 })
 
 router.get('/genre/:genre', async (req, res) => {

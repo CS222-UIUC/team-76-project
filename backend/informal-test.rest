@@ -37,3 +37,6 @@ Content-Type: application/json
 
 ### DELETE /reviews/1
 DELETE http://localhost:5000/reviews/1
+
+### GET / 
+GET http://localhost:5000/game/genre/2
