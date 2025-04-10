@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
     const insertReview = db.prepare(`INSERT INTO reviews (user_id, game_id, review, rating) VALUES (?, ?, ?, ?)`);
     const result = insertReview.run(req.user_id, game_id, review, rating);
 
-    res.json({id: result.lastInsertRowid, rating, review, completed: 0});
+    res.json({id: result.lastInsertRowid, rating, review});
 })
 
 // update a review

@@ -62,6 +62,28 @@ async function getGamesID(ID){
     }
 }
 
+async function getGamesSearch(query){
+    try {
+        if (!ACCESS_TOKEN) await getIGDBAccess();
+        console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
+        const response = await axios.post('https://api.igdb.com/v4/games', 
+            `search "${query}"; fields *;`,
+            {
+                headers: {
+                    'Client-ID': process.env.CLIENT_ID,
+                    'Authorization': `Bearer ${ACCESS_TOKEN}`
+                }
+            }
+        );
+
+        return response.data;
+
+    } catch (error) {
+        console.error('Error fetching game:', error.response?.data || error.message);
+        return [];
+    }
+}
+
 
 // get all games
 router.get('/all', async (req, res) => { 
@@ -79,6 +101,16 @@ router.get('/genre/:genre', async (req, res) => {
 router.get('/id/:id', async (req, res) => { 
     const { id } = req.params;
     const games = await getGamesID(id);
+    res.json(games);
+})
+
+router.get('/search/', async (req, res) => {
+    const query = req.query.q;
+    if (!query) {
+      return res.status(400).json({ error: "Missing search query" });
+    }
+
+    const games = await getGamesSearch(query);
     res.json(games);
 })
 

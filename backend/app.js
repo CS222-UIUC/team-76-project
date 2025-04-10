@@ -19,4 +19,4 @@ app.use('/game', authMiddleware, gameRoutes);
 // CRUD actions on reviews, require JWT auth
 app.use('/reviews', authMiddleware, reviewsRoutes);
 
-module.exports = app; // ✅ Export the Express app (without listening)
+module.exports = app; 

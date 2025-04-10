@@ -5,6 +5,9 @@ GET http://localhost:5000/game/genre/2
 ### GET /game/id/57016   (sinjid: battle arena)
 GET http://localhost:5000/game/id/57016
 
+### GET /game/search?q="zelda"
+GET http://localhost:5000/game/search?q=zelda
+
 ### POST /reviews/
 POST http://localhost:5000/reviews/
 Content-Type: application/json
