@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game & Rate</title>  
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
         .topnav {
         background-color: #E8DAFF;
+        width: 100vw;
         overflow: hidden;
         }
 
@@ -30,6 +35,9 @@
         }
         .skyimg {
             height: 110px;
+            width: 100vw;
+            display: block;
+            object-fit: cover;
         }
         .img {
             width: 60px;
@@ -55,6 +63,16 @@
             display: block;
             text-align: center;
         }
+        .names {
+            font-size: small;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: #E8DAFF;
+            padding: 10px 0;
+            font-family: Georgia, serif;
+        }
     </style>
 
 </head>
@@ -63,11 +81,11 @@
 
     <div class="topnav">
         <a class="active" href="#home">Home</a>
-        <a href="#action-adventure">Action-Adventure</a>
-        <a href="#shooter">Shooter</a>
-        <a href="#battleroyale">Battle Royale</a>
-        <a href="#sports">Sports</a>
-        <a href="#roleplaying">Role Playing</a>
+        <a href="actionadventure.html">Action-Adventure</a>
+        <a href="strategy.html">Strategy</a>
+        <a href="battleroyale.html">Battle Royale</a>
+        <a href="sports.html">Sports</a>
+        <a href="roleplay.html">Role Playing</a>
       </div>
     <body class="title">
         <p style="text-align: center;">
@@ -81,7 +99,8 @@
 
         <input id="searchInput" class="search" type="text" placeholder="Find your next game!">
         <button id="searchbutton" class="search">Search</button>
-        <img class= "img" src="gamer.png"> 
+        <img class= "img" src="gamer.png">
+        <p class="names">By: Maahum, Vrushi, Mathew, and Sara</p>
    
 
 
@@ -97,18 +116,4 @@
         });
     </script>
 </body>
-<!-- <script>
-    const input = document.getElementById("input");
-    const button = document.getElementById("button");
-    const responseAPI = async (e) => {
-        e.preventDefault(); //prevent refresh when clicking button
-        const res = await fetch('http://localhost:4000/message', {
-        method: 'GET'
-    }) //get data
-    console.log(res); //log data
-    const data = await res.json(); //save data to data
-    input3.value = data.message; //setting input to value
-    }
-    button.addEventListener("click", responseAPI)
-</script> -->
 </html>
