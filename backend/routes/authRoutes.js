@@ -14,12 +14,12 @@ router.post('/register', (req, res) => {
     try {
         const insertUser = db.prepare('INSERT INTO users (username, password) VALUES (?, ?)')
         const result = insertUser.run(username, hashedPassword)
+        res.sendStatus(201)
 
     } catch (err) {
         console.log(err.message)
         res.sendStatus(503)
     }
-    res.sendStatus(201)
 })
 
 router.post('/login', (req, res) => {
@@ -41,7 +41,6 @@ router.post('/login', (req, res) => {
         console.log(err.message)
         res.sendStatus(503)
     }
-    res.sendStatus(201)
 })
 
 
