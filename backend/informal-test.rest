@@ -5,15 +5,24 @@ GET http://localhost:5000/game/genre/2
 ### GET /game/id/57016   (sinjid: battle arena)
 GET http://localhost:5000/game/id/57016
 
+### GET /game/search?q="zelda"
+GET http://localhost:5000/game/search?q=zelda
+
+### GET /game/cover/57016
+GET http://localhost:5000/game/cover/1025
+
 ### POST /reviews/
 POST http://localhost:5000/reviews/
 Content-Type: application/json
 
 {
-    "rating": 5,
+    "rating": 2,
     "review": "great game",
     "game_id": 57016
 }
+
+### GET /reviews/rating/57016
+GET http://localhost:5000/reviews/rating/57016
 
 ### GET /reviews/
 GET http://localhost:5000/reviews/

@@ -23,7 +23,7 @@ async function getGames(genre){
         if (!ACCESS_TOKEN) await getIGDBAccess();
         console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
         const response = await axios.post('https://api.igdb.com/v4/games', 
-            `fields *; where genres = (${genre});`,
+            `fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos; where genres = (${genre});`,
             {
                 headers: {
                     'Client-ID': process.env.CLIENT_ID,
@@ -45,7 +45,29 @@ async function getGamesID(ID){
         if (!ACCESS_TOKEN) await getIGDBAccess();
         console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
         const response = await axios.post('https://api.igdb.com/v4/games', 
-            `fields *; where id = (${ID});`,
+            `fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos; where id = (${ID});`,
+            {
+                headers: {
+                    'Client-ID': process.env.CLIENT_ID,
+                    'Authorization': `Bearer ${ACCESS_TOKEN}`
+                }
+            }
+        );
+
+        return response.data;
+
+    } catch (error) {
+        console.error('Error fetching game:', error.response?.data || error.message);
+        return [];
+    }
+}
+
+async function getGamesSearch(query){
+    try {
+        if (!ACCESS_TOKEN) await getIGDBAccess();
+        console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
+        const response = await axios.post('https://api.igdb.com/v4/games', 
+            `search "${query}"; fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos;`,
             {
                 headers: {
                     'Client-ID': process.env.CLIENT_ID,
@@ -88,5 +110,19 @@ router.get('/id/:id', async (req, res) => {
     const games = await getGamesID(id);
     res.json(games);
 })
+
+router.get('/search/', async (req, res) => {
+    const query = req.query.q;
+    if (!query) {
+      return res.status(400).json({ error: "Missing search query" });
+    }
+
+    const games = await getGamesSearch(query);
+    res.json(games);
+})
+
+// COVER LINK: 
+// https://images.igdb.com/igdb/image/upload/t_720p/<image_id>.jpg
+
 
 module.exports = router;
