@@ -1,2 +1,39 @@
+### GET /game/genre/2
+GET http://localhost:5000/game/genre/2
+
+
+### GET /game/id/57016   (sinjid: battle arena)
+GET http://localhost:5000/game/id/57016
+
+### POST /reviews/
+POST http://localhost:5000/reviews/
+Content-Type: application/json
+
+{
+    "rating": 5,
+    "review": "great game",
+    "game_id": 57016
+}
+
+### GET /reviews/
+GET http://localhost:5000/reviews/
+Content-Type: application/json
+
+{
+    "game_id": 57016
+}
+
+### UPDATE /reviews/1
+PUT http://localhost:5000/reviews/1
+Content-Type: application/json
+
+{
+    "rating": 1,
+    "review": "bad game"
+}
+
+### DELETE /reviews/1
+DELETE http://localhost:5000/reviews/1
+
 ### GET / 
 GET http://localhost:5000/game/genre/2

@@ -40,10 +40,39 @@ async function getGames(genre){
     }
 }
 
+async function getGamesID(ID){
+    try {
+        if (!ACCESS_TOKEN) await getIGDBAccess();
+        console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
+        const response = await axios.post('https://api.igdb.com/v4/games', 
+            `fields *; where id = (${ID});`,
+            {
+                headers: {
+                    'Client-ID': process.env.CLIENT_ID,
+                    'Authorization': `Bearer ${ACCESS_TOKEN}`
+                }
+            }
+        );
+
+        return response.data;
+
+    } catch (error) {
+        console.error('Error fetching game:', error.response?.data || error.message);
+        return [];
+    }
+}
+
 
 // get all games
 router.get('/all', async (req, res) => { 
     const games = await getGames();
+    res.json(games);
+
+})
+
+router.get('/genre/:genre', async (req, res) => {
+    const { genre } = req.params;
+    const games = await getGames(genre);
     res.json(games);
 })
 
@@ -54,8 +83,10 @@ router.get('/genre/:genre', async (req, res) => {
 })
 
 // get game with id = id
-router.get('/:id', (req, res) => { 
-
+router.get('/id/:id', async (req, res) => { 
+    const { id } = req.params;
+    const games = await getGamesID(id);
+    res.json(games);
 })
 
 module.exports = router;
