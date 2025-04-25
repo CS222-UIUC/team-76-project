@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 });
 
 // getting game information
-app.use('/game', authMiddleware, gameRoutes);
+app.use('/game', gameRoutes);
 
 // CRUD actions on reviews, require JWT auth
 app.use('/reviews', authMiddleware, reviewsRoutes);

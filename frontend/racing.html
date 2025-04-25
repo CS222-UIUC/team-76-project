@@ -80,37 +80,35 @@
     <img class= "skyimg" src="PixelSky.png">
     <div class="topnav">
         <a href="index.html">Home</a>
-        <a href="actionadventure.html">Action-Adventure</a>
+        <a href="fighting.html">Fighting</a>
         <a href="strategy.html">Strategy</a>
-        <a class = "active" href="battleroyale.html">Battle Royale</a>
-        <a href="sports.html">Sports</a>
+        <a href="shooter.html">Shooter</a>
+        <a class = "active" href="racing.html">Racing</a>
         <a href="roleplay.html">Role Playing</a>
       </div>
 </head>
 <body>
 
-    <h1 class="title" style="text-align: center;">Battle Royale</h1>
+    <h1 class="title" style="text-align: center; margin-bottom: 10px;">Racing</h1>
 
 
 
     <div class="gametext" id="results"></div>
     <p class="names">By: Maahum, Vrushi, Mathew, and Sara</p>
     <script>
-        decodedQuery = "Battle Royale";
-        fetch('/game/search?q=${decodedQuery}')
+        fetch('/game/genre/:10')
             .then(response => response.json())
             .then(data => {
-                const filteredResults = data.filter(item => 
-                    item.genre.toLowerCase().includes(decodedQuery.toLowerCase()) 
-                );
+                const filteredResults = data
 
                 const resultsContainer = document.getElementById('results');
                 
                 if (filteredResults.length > 0) {
                     filteredResults.forEach(item => {
                         const resultItem = document.createElement('div');
-                        resultItem.innerHTML = `<h3>${item.name}</h3>
-                                                <p>Rating: ${item.rating}</p>`;
+                        resultItem.innerHTML = `<img  style="margin-top:10px" src="https://images.igdb.com/igdb/image/upload/t_720p/${item.cover.image_id}.jpg" height="200">
+                                                <h3>${item.name}</h3>
+                                                <p style="margin-bottom:20px">Rating: ${item.rating}</p>`;
                         resultsContainer.appendChild(resultItem);
                     });
                 } else {
