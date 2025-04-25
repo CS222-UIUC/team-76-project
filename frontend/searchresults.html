@@ -100,7 +100,7 @@
         const query = params.get('query');
         const decodedQuery = decodeURIComponent(query);
 
-        fetch('/game/search?q=${decodedQuery}')
+        fetch(`/game/search?q=${decodedQuery}`)
             .then(response => response.json())
             .then(data => {
                 const filteredResults = data.filter(item => 
