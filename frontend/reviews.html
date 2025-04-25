@@ -50,27 +50,90 @@
   </div>
   <div class="noauth">
     <p>Register here</p>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="authenticate()" id="RegButton">Register</button>
+    <button onclick="loginAuth()" style="display: none;" id="LoginButton">Login</button>
+    <button onclick="login()" id="AlreadyHave">Already Have an account?</button>
+    <button onclick="register()" id="Needs" style="display: none;">Need to register an account?</button>
   </div>
 
 
+
   <script>
-    let token = localStorage.getItem('token');
 
     const apiBase = 'http://localhost:5000'
-    const TEST_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ1MTE2MDMzLCJleHAiOjE3NDUyMDI0MzN9.l7Eu4gbzcnT9JZAwwPScCWobCTLWoGoQFN5JFnWFKIQ";
 
     function showDashboard() {
       document.querySelector('.content').style.display = 'block';
       document.querySelector('.noauth').style.display = 'none';
     }
 
-
-    function authenticate() {
-      localStorage.setItem('token', TEST_TOKEN);
-      console.log("authenticating");
+    function login() {
+      document.getElementById('Needs').style.display = 'block';
+      document.getElementById('AlreadyHave').style.display = 'none';
+      document.getElementById('LoginButton').style.display = 'block';
+      document.getElementById('RegButton').style.display = 'none';
     }
 
-    authenticate();
+    function register() {
+      document.getElementById('Needs').style.display = 'none';
+      document.getElementById('AlreadyHave').style.display = 'block';
+      document.getElementById('LoginButton').style.display = 'none';
+      document.getElementById('RegButton').style.display = 'block';
+    }
+
+
+    async function authenticate() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const response = await fetch(`${apiBase}/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      }).then(res => res.json())
+        .then(data => {
+          console.log(data);
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+            run();
+          } else {
+            console.error('Authentication failed:', data);
+          }
+        })
+        .catch(error => {
+          console.error('Error during authentication:', error);
+        });
+    }
+
+    async function loginAuth() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const response = await fetch(`${apiBase}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+            run();
+          } else {
+            console.error('Login failed:', data);
+          }
+        })
+        .catch(error => {
+          console.error('Error during login:', error);
+        });
+    }
+
+    //authenticate();
 
     function displayReviews(reviews) {
       const reviewsContainer = document.querySelector('.reviews');
@@ -91,7 +154,7 @@
       const response = await fetch(`${apiBase}/reviews/${gameId}`, {
         method: 'GET',
         headers: {
-          'Authorization': token,
+          'authorization': localStorage.getItem('token'),
         }
       });
       if (response.ok) {
@@ -110,30 +173,31 @@
       const response = await fetch(`${apiBase}/reviews/`, {
         method: 'POST',
         headers: {
-          'Authorization': token,
+          'authorization': localStorage.getItem('token'),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ review: reviewText, rating: rating, game_id: gameId })
       });
 
       if (response.ok) {
-        alert('Review added successfully!');
-        loadReviews();
+        reviews = await fetchReviews();
+        displayReviews(reviews);
       } else {
         console.error('Failed to add review:', response.statusText);
       }
     }
 
-    if (token) {
-      async function run() {
-        showDashboard();
-        reviews = await fetchReviews();
-        if (reviews) {
-          displayReviews(reviews);
-        } else {
-          console.error('No reviews found');
-        }
+    async function run() {
+      showDashboard();
+      reviews = await fetchReviews();
+      if (reviews) {
+        displayReviews(reviews);
+      } else {
+        console.error('No reviews found');
       }
+    }
+
+    if (localStorage.getItem('token')) {
       run();
     }
   </script>

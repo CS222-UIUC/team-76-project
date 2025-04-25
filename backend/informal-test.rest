@@ -29,7 +29,7 @@ GET http://localhost:5000/game/search?q=zelda
 
 ### POST /reviews/
 POST http://localhost:5000/reviews/
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ1MTE1MTkwLCJleHAiOjE3NDUyMDE1OTB9.6d2fm0WLmoUYMahjTz-udUNdvCoY8IuP4lWrl8TY1C4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzQ1NTQ3ODk5LCJleHAiOjE3NDU2MzQyOTl9.oKa3X8R5-AX7xNYsnetPEC00ZannJC6GCx_f4gdZWWE
 Content-Type: application/json
 
 {
@@ -39,8 +39,8 @@ Content-Type: application/json
 }
 
 ### GET /reviews/rating/57016
-GET http://localhost:5000/reviews/rating/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ1MTE2MDMzLCJleHAiOjE3NDUyMDI0MzN9.l7Eu4gbzcnT9JZAwwPScCWobCTLWoGoQFN5JFnWFKIQ
+GET http://localhost:5000/reviews/rating/57016
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzQ1NTQ3ODk5LCJleHAiOjE3NDU2MzQyOTl9.oKa3X8R5-AX7xNYsnetPEC00ZannJC6GCx_f4gdZWWE
 
 ### GET /reviews/
 GET http://localhost:5000/reviews/1

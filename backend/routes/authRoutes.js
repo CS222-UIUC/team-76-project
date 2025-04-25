@@ -6,12 +6,12 @@ const admin = require('firebase-admin');
 
 const router = express.Router()
 
-const serviceAccount = require('../firebaseServiceAccountKey.json');
-if (!admin.apps.length) {
-    admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-    });
-}
+// const serviceAccount = require('../firebaseServiceAccountKey.json');
+// if (!admin.apps.length) {
+//     admin.initializeApp({
+//         credential: admin.credential.cert(serviceAccount),
+//     });
+// }
 
 router.post('/register', (req, res) => {
     const { username, password } = req.body
@@ -20,9 +20,11 @@ router.post('/register', (req, res) => {
 
     //save new user + encrypted password to db
     try {
-        const insertUser = db.prepare('INSERT INTO users (username, password) VALUES (?, ?)')
-        const result = insertUser.run(username, hashedPassword)
-        res.sendStatus(201)
+        const insertUser = db.prepare('INSERT INTO users (username, password) VALUES (?, ?)');
+        const result = insertUser.run(username, hashedPassword);
+        const token = jwt.sign({id: result.lastInsertRowid}, process.env.JWT_SECRET, {expiresIn: '24h'});
+
+        res.json({token});
 
     } catch (err) {
         console.log(err.message)
@@ -51,30 +53,31 @@ router.post('/login', (req, res) => {
     }
 })
 
-router.post('/google-login', async (req, res) => {
-    const { idToken } = req.body;
+// router.post('/google-login', async (req, res) => {
+//     const { idToken } = req.body;
 
-    try {
-        const decodedToken = await admin.auth().verifyIdToken(idToken);
-        const email = decodedToken.email;
-        const uid = decodedToken.uid;
+//     try {
+//         const decodedToken = await admin.auth().verifyIdToken(idToken);
+//         const email = decodedToken.email;
+//         const uid = decodedToken.uid;
 
 
-        const getUser = db.prepare('SELECT * FROM users WHERE username = ?');
-        let user = getUser.get(email);
+//         const getUser = db.prepare('SELECT * FROM users WHERE username = ?');
+//         let user = getUser.get(email);
 
-        if (!user) {
-            const insertUser = db.prepare('INSERT INTO users (username, password) VALUES (?, ?)');
-            insertUser.run(email, 'google-oauth-user');
-            user = getUser.get(email);
-        }
+//         if (!user) {
+//             const insertUser = db.prepare('INSERT INTO users (username, password) VALUES (?, ?)');
+//             insertUser.run(email, 'google-oauth-user');
+//             user = getUser.get(email);
+//         }
 
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '24h' });
-        res.json({ token });
-    } catch (err) {
-        console.error('Google login error:', err);
-        res.status(401).json({ error: 'Invalid Google token' });
-    }
-});
+//         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '24h' });
+//         res.json({ token });
+//     } catch (err) {
+//         console.error('Google login error:', err);
+//         res.status(401).json({ error: 'Invalid Google token' });
+//     }
+// });
+
 
 module.exports = router;
