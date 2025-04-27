@@ -4,8 +4,8 @@ const db = require('../db.js')
 const router = express.Router()
 
 // get all reviews on a game id
-router.get('/', (req, res) => { 
-    const { game_id } = req.body;
+router.get('/:game_id', (req, res) => { 
+    const { game_id } = req.params;
 
     const getReviews = db.prepare(`SELECT * FROM reviews WHERE game_id = ?`);
     const reviews = getReviews.all(game_id);
@@ -23,7 +23,7 @@ router.get('/rating/:game_id', (req, res) => {
 // create a new review on a game id
 router.post('/', (req, res) => {
     const { rating, review, game_id } = req.body;
-
+    console.log(req.user_id);
     const insertReview = db.prepare(`INSERT INTO reviews (user_id, game_id, review, rating) VALUES (?, ?, ?, ?)`);
     const result = insertReview.run(req.user_id, game_id, review, rating);
 

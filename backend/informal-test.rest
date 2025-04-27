@@ -1,3 +1,22 @@
+### REGISTER USER
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "username": "myusername",
+    "password": "pass1234"
+}
+
+### LOGIN USER
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username": "myusername",
+    "password": "pass1234"
+}
+
+
 ### GET /game/genre/2
 GET http://localhost:5000/game/genre/2
 
@@ -8,11 +27,9 @@ GET http://localhost:5000/game/id/57016
 ### GET /game/search?q="zelda"
 GET http://localhost:5000/game/search?q=zelda
 
-### GET /game/cover/57016
-GET http://localhost:5000/game/cover/1025
-
 ### POST /reviews/
 POST http://localhost:5000/reviews/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ1MTE1MTkwLCJleHAiOjE3NDUyMDE1OTB9.6d2fm0WLmoUYMahjTz-udUNdvCoY8IuP4lWrl8TY1C4
 Content-Type: application/json
 
 {
@@ -22,15 +39,13 @@ Content-Type: application/json
 }
 
 ### GET /reviews/rating/57016
-GET http://localhost:5000/reviews/rating/57016
+GET http://localhost:5000/reviews/rating/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ1MTE2MDMzLCJleHAiOjE3NDUyMDI0MzN9.l7Eu4gbzcnT9JZAwwPScCWobCTLWoGoQFN5JFnWFKIQ
 
 ### GET /reviews/
-GET http://localhost:5000/reviews/
-Content-Type: application/json
+GET http://localhost:5000/reviews/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ1MTE2MDMzLCJleHAiOjE3NDUyMDI0MzN9.l7Eu4gbzcnT9JZAwwPScCWobCTLWoGoQFN5JFnWFKIQ
 
-{
-    "game_id": 57016
-}
 
 ### UPDATE /reviews/1
 PUT http://localhost:5000/reviews/1
