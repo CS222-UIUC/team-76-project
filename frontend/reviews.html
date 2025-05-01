@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game & Rate</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .topnav {
+      background-color: #E8DAFF;
+      overflow: hidden;
+    }
+
+    .topnav a {
+      float: left;
+      color: #000C87;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .topnav a:hover {
+      background-color: rgb(212, 179, 255);
+      color: 000C87;
+    }
+
+    .topnav a.active {
+      background-color: rgb(212, 179, 255);
+      color: 000C87;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content" style="display: none;">
+    <div class="game" id=1>
+      Sample Game
+      <p>Rating: </p>
+      <div class="reviews">
+
+      </div>
+    </div>
+    <div>
+      <input type="text" id="reviewText" placeholder="Write your review here...">
+      <input type="number" id="rating" min="1" max="5" placeholder="Rate (1-5)">
+      <button>Add Review</button>
+    </div>
+  </div>
+  <div class="noauth">
+    <p>Register here</p>
+  </div>
+
+
+  <script>
+    let token = localStorage.getItem('token');
+
+    const apiBase = 'http://localhost:5000'
+    const TEST_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ1MTE2MDMzLCJleHAiOjE3NDUyMDI0MzN9.l7Eu4gbzcnT9JZAwwPScCWobCTLWoGoQFN5JFnWFKIQ";
+
+    function showDashboard() {
+      document.querySelector('.content').style.display = 'block';
+      document.querySelector('.noauth').style.display = 'none';
+    }
+
+
+    function authenticate() {
+      localStorage.setItem('token', TEST_TOKEN);
+      console.log("authenticating");
+    }
+
+    authenticate();
+
+    function displayReviews(reviews) {
+      const reviewsContainer = document.querySelector('.reviews');
+      reviewsContainer.innerHTML = ''; // Clear previous reviews
+      reviews.forEach(review => {
+        const reviewElement = document.createElement('div');
+        reviewElement.textContent = `Rating: ${review.rating} - ${review.review}`;
+        reviewsContainer.appendChild(reviewElement);
+      });
+    }
+
+    // attach addReview function to the button
+    document.querySelector('button').addEventListener('click', addReview);
+
+    async function fetchReviews() {
+      const gameId = 1; // Replace with the actual game ID
+      console.log(`fetching at ${apiBase}/reviews/`);
+      const response = await fetch(`${apiBase}/reviews/${gameId}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': token,
+        }
+      });
+      if (response.ok) {
+        const reviews = await response.json();
+        return reviews;
+      } else {
+        console.error('Failed to fetch reviews:', response.statusText);
+      }
+    }
+
+    async function addReview() {
+      const gameId = 1; // Replace with the actual game ID
+      const reviewText = document.getElementById('reviewText').value;
+      const rating = document.getElementById('rating').value;
+
+      const response = await fetch(`${apiBase}/reviews/`, {
+        method: 'POST',
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ review: reviewText, rating: rating, game_id: gameId })
+      });
+
+      if (response.ok) {
+        alert('Review added successfully!');
+        loadReviews();
+      } else {
+        console.error('Failed to add review:', response.statusText);
+      }
+    }
+
+    if (token) {
+      async function run() {
+        showDashboard();
+        reviews = await fetchReviews();
+        if (reviews) {
+          displayReviews(reviews);
+        } else {
+          console.error('No reviews found');
+        }
+      }
+      run();
+    }
+  </script>
+</body>
+
+</html>

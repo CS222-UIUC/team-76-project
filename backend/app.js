@@ -14,8 +14,12 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
+app.get('/test-review', (req,res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'reviews.html'));
+});
+
 // getting game information
-app.use('/game', authMiddleware, gameRoutes);
+app.use('/game', gameRoutes);
 
 // CRUD actions on reviews, require JWT auth
 app.use('/reviews', authMiddleware, reviewsRoutes);
