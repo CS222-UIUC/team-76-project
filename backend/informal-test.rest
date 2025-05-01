@@ -61,3 +61,4 @@ DELETE http://localhost:5000/reviews/1
 
 ### GET / 
 GET http://localhost:5000/game/genre/2
+
