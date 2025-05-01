@@ -42,7 +42,7 @@
         .img {
             width: 60px;
             display: block;
-            margin: auto;    
+            margin: auto;
         }
         .mustacheimg {
             width: 200px;
@@ -95,25 +95,37 @@
         <p style="text-align: center; font-size: x-large; color: rgb(0, 0, 0);">
             A Gaming Community
         </p>
-        <img class= "mustacheimg" src="Mustache.png">
+        <img class= "mustacheimg" src="Mustache.png" style="margin-bottom: 10px;">
 
         <input id="searchInput" class="search" type="text" placeholder="Find your next game!">
         <button id="searchbutton" class="search">Search</button>
-        <img class= "img" src="gamer.png">
+        <img class= "img" src="gamer.png" style="margin-top: 160px;">
         <p class="names">By: Maahum, Vrushi, Mathew, and Sara</p>
    
 
 
-    <script>
-        document.getElementById("searchbutton").addEventListener("click", function() {
-            var searchQuery = document.getElementById("searchInput").value;
-
-            // Check if search input is not empty
-            if (searchQuery.trim() !== "") {
-                // Open the results page with the search query as a query parameter
-                window.location.href = "searchresults.html?query=" + encodeURIComponent(searchQuery);
+        <script>
+            const searchInput = document.getElementById("searchInput");
+            const searchButton = document.getElementById("searchbutton");
+        
+            searchButton.addEventListener("click", function() {
+                performSearch();
+            });
+        
+            searchInput.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    performSearch();
+                }
+            });
+        
+            function performSearch() {
+                const searchQuery = searchInput.value;
+        
+                if (searchQuery.trim() !== "") {
+                    // Open the results page with the search query as a query parameter
+                    window.location.href = "searchresults.html?query=" + encodeURIComponent(searchQuery);
+                }
             }
-        });
-    </script>
+        </script>
 </body>
 </html>
