@@ -80,8 +80,8 @@
     <img class= "skyimg" src="PixelSky.png">
     <div class="topnav">
         <a href="index.html">Home</a>
-        <a class = "active" href="actionadventure.html">Action-Adventure</a>
-        <a href="strategy.html">Strategy</a>
+        <a href="actionadventure.html">Action-Adventure</a>
+        <a class = "active" href="strategy.html">Strategy</a>
         <a href="battleroyale.html">Battle Royale</a>
         <a href="sports.html">Sports</a>
         <a href="roleplay.html">Role Playing</a>
@@ -89,14 +89,14 @@
 </head>
 <body>
 
-    <h1 class="title" style="text-align: center;">Action-Adventure</h1>
+    <h1 class="title" style="text-align: center;">Strategy</h1>
 
 
 
     <div class="gametext" id="results"></div>
     <p class="names">By: Maahum, Vrushi, Mathew, and Sara</p>
     <script>
-        decodedQuery = "Action-Adventure";
+        decodedQuery = "Strategy";
         fetch('/game/search?q=${decodedQuery}')
             .then(response => response.json())
             .then(data => {
