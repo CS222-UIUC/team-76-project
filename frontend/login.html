@@ -3,30 +3,117 @@
 <html lang="en">
 
 <head>
+    <meta charset ="UTF-8">
+    <meta name ="viewport" content = "width=device-width, 
+    initial-scale = 1.0">
     <title>Mr Game & Rate Login Page </title>
     <link rel="stylesheet" href="style.css">
-</head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCgTCpvms2EU0UygLBjIStvQJwcnHHlIVA",
+            authDomain: "mr-game-and-rate.firebaseapp.com",
+            projectId: "mr-game-and-rate",
+            storageBucket: "mr-game-and-rate.appspot.com",
+            messagingSenderId: "1008663096909",
+            appId: "1:1008663096909:web:022e05a954138e0f6a3604",
+            measurementId: "G-H6355SXVLD"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        const auth = firebase.auth();
+        const provider = new firebase.auth.GoogleAuthProvider();
+    </script>
+
+
+</head>
 <body>
     <!-- Login Form Code -->
-    <form action="">
-        <label 
-        for="first">
-            Username:
-        </label>
-        <!-- inputting username -->
-        <input type="text" id="first" name="first" 
-            placeholder="Enter your Username" required>
-        <label for="password">
-            Password:
-        </label>
-        <!-- inputting password -->
-        <input type="password" id="password" name="password" 
-            placeholder="Enter your Password" required>
-         <!-- button for submitting username and password -->
-        <button type="submit"> 
-            Submit 
-        </button>
-    </form>
+    <label for="first">
+        Username:
+    </label>
+    <!-- inputting username -->
+    <input type="text" id="username" placeholder="Enter your Username" required>
+    <label for="password">
+        Password:
+    </label>
+    <!-- inputting password -->
+    <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+    <!-- button for submitting username and password -->
+    <button id="login-button" onclick="loginAuth()">
+        Login
+    </button>
+    <button onclick="registerPage()" id="" register-button">
+        Need to register an account?
+    </button>
+
+    <button id="google-login">Sign in with Google</button>
+
+    <script>
+        const apiBase = 'http://localhost:5000';
+
+        function registerPage() {
+            window.location.href = '/register';
+        }
+
+        async function loginAuth() {
+            console.log("Login button clicked");
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const response = await fetch(`${apiBase}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.token) {
+                        localStorage.setItem('token', data.token);
+                        // Redirect to the homepage /
+                        window.location.href = '/test-review';
+                    } else {
+                        console.error('Login failed:', data);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during login:', error);
+                });
+        }
+
+
+        document.getElementById('google-login').addEventListener('click', () => {
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    return result.user.getIdToken();
+                })
+                .then((idToken) => {
+                    fetch('/auth/google-login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ idToken })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            localStorage.setItem('token', data.token);
+                            // Redirect to the homepage /
+                            window.location.href = '/test-review';
+                        });
+                })
+                .catch((error) => {
+                    console.error('Error during sign-in:', error);
+                });
+        });
+    </script>
 </body>
+
 </html>
