@@ -20,9 +20,11 @@ router.post('/register', (req, res) => {
 
     //save new user + encrypted password to db
     try {
-        const insertUser = db.prepare('INSERT INTO users (username, password) VALUES (?, ?)')
-        const result = insertUser.run(username, hashedPassword)
-        res.sendStatus(201)
+        const insertUser = db.prepare('INSERT INTO users (username, password) VALUES (?, ?)');
+        const result = insertUser.run(username, hashedPassword);
+        const token = jwt.sign({id: result.lastInsertRowid}, process.env.JWT_SECRET, {expiresIn: '24h'});
+
+        res.json({token});
 
     } catch (err) {
         console.log(err.message)
@@ -76,5 +78,6 @@ router.post('/google-login', async (req, res) => {
         res.status(401).json({ error: 'Invalid Google token' });
     }
 });
+
 
 module.exports = router;

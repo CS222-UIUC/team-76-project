@@ -34,7 +34,7 @@
 </head>
 
 <body>
-  <div class="content" style="display: none;">
+  <div class="content">
     <div class="game" id=1>
       Sample Game
       <p>Rating: </p>
@@ -48,29 +48,10 @@
       <button>Add Review</button>
     </div>
   </div>
-  <div class="noauth">
-    <p>Register here</p>
-  </div>
-
 
   <script>
-    let token = localStorage.getItem('token');
 
     const apiBase = 'http://localhost:5000'
-    const TEST_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ1MTE2MDMzLCJleHAiOjE3NDUyMDI0MzN9.l7Eu4gbzcnT9JZAwwPScCWobCTLWoGoQFN5JFnWFKIQ";
-
-    function showDashboard() {
-      document.querySelector('.content').style.display = 'block';
-      document.querySelector('.noauth').style.display = 'none';
-    }
-
-
-    function authenticate() {
-      localStorage.setItem('token', TEST_TOKEN);
-      console.log("authenticating");
-    }
-
-    authenticate();
 
     function displayReviews(reviews) {
       const reviewsContainer = document.querySelector('.reviews');
@@ -91,13 +72,18 @@
       const response = await fetch(`${apiBase}/reviews/${gameId}`, {
         method: 'GET',
         headers: {
-          'Authorization': token,
+          'authorization': localStorage.getItem('token'),
         }
       });
       if (response.ok) {
         const reviews = await response.json();
         return reviews;
       } else {
+        // redirect to login page if token is invalid
+        if (response.status === 401) {
+          localStorage.removeItem('token');
+          window.location.href = '/login';
+        }
         console.error('Failed to fetch reviews:', response.statusText);
       }
     }
@@ -110,31 +96,35 @@
       const response = await fetch(`${apiBase}/reviews/`, {
         method: 'POST',
         headers: {
-          'Authorization': token,
+          'authorization': localStorage.getItem('token'),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ review: reviewText, rating: rating, game_id: gameId })
       });
 
       if (response.ok) {
-        alert('Review added successfully!');
-        loadReviews();
+        reviews = await fetchReviews();
+        displayReviews(reviews);
       } else {
         console.error('Failed to add review:', response.statusText);
       }
     }
 
-    if (token) {
-      async function run() {
-        showDashboard();
-        reviews = await fetchReviews();
-        if (reviews) {
-          displayReviews(reviews);
-        } else {
-          console.error('No reviews found');
-        }
+    async function run() {
+      reviews = await fetchReviews();
+      if (reviews) {
+        displayReviews(reviews);
+      } else {
+        console.error('No reviews found');
       }
+    }
+
+    if (localStorage.getItem('token') && localStorage.getItem('token') !== 'undefined') {
       run();
+    }
+    else {
+      // Redirect to login page if token is invalid
+      window.location.href = '/login';
     }
   </script>
 </body>
