@@ -18,6 +18,14 @@ app.get('/test-review', (req,res) => {
     res.sendFile(path.join(__dirname, '../frontend', 'reviews.html'));
 });
 
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'login.html'));
+});
+
+app.get('/register', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'register.html'));
+});
+
 // getting game information
 app.use('/game', gameRoutes);
 

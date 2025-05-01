@@ -34,7 +34,7 @@
 </head>
 
 <body>
-  <div class="content" style="display: none;">
+  <div class="content">
     <div class="game" id=1>
       Sample Game
       <p>Rating: </p>
@@ -48,92 +48,10 @@
       <button>Add Review</button>
     </div>
   </div>
-  <div class="noauth">
-    <p>Register here</p>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="authenticate()" id="RegButton">Register</button>
-    <button onclick="loginAuth()" style="display: none;" id="LoginButton">Login</button>
-    <button onclick="login()" id="AlreadyHave">Already Have an account?</button>
-    <button onclick="register()" id="Needs" style="display: none;">Need to register an account?</button>
-  </div>
-
-
 
   <script>
 
     const apiBase = 'http://localhost:5000'
-
-    function showDashboard() {
-      document.querySelector('.content').style.display = 'block';
-      document.querySelector('.noauth').style.display = 'none';
-    }
-
-    function login() {
-      document.getElementById('Needs').style.display = 'block';
-      document.getElementById('AlreadyHave').style.display = 'none';
-      document.getElementById('LoginButton').style.display = 'block';
-      document.getElementById('RegButton').style.display = 'none';
-    }
-
-    function register() {
-      document.getElementById('Needs').style.display = 'none';
-      document.getElementById('AlreadyHave').style.display = 'block';
-      document.getElementById('LoginButton').style.display = 'none';
-      document.getElementById('RegButton').style.display = 'block';
-    }
-
-
-    async function authenticate() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      const response = await fetch(`${apiBase}/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username, password })
-      }).then(res => res.json())
-        .then(data => {
-          console.log(data);
-          if (data.token) {
-            localStorage.setItem('token', data.token);
-            run();
-          } else {
-            console.error('Authentication failed:', data);
-          }
-        })
-        .catch(error => {
-          console.error('Error during authentication:', error);
-        });
-    }
-
-    async function loginAuth() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      const response = await fetch(`${apiBase}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username, password })
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          if (data.token) {
-            localStorage.setItem('token', data.token);
-            run();
-          } else {
-            console.error('Login failed:', data);
-          }
-        })
-        .catch(error => {
-          console.error('Error during login:', error);
-        });
-    }
-
-    //authenticate();
 
     function displayReviews(reviews) {
       const reviewsContainer = document.querySelector('.reviews');
@@ -161,6 +79,11 @@
         const reviews = await response.json();
         return reviews;
       } else {
+        // redirect to login page if token is invalid
+        if (response.status === 401) {
+          localStorage.removeItem('token');
+          window.location.href = '/login';
+        }
         console.error('Failed to fetch reviews:', response.statusText);
       }
     }
@@ -188,7 +111,6 @@
     }
 
     async function run() {
-      showDashboard();
       reviews = await fetchReviews();
       if (reviews) {
         displayReviews(reviews);
@@ -197,8 +119,12 @@
       }
     }
 
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('token') && localStorage.getItem('token') !== 'undefined') {
       run();
+    }
+    else {
+      // Redirect to login page if token is invalid
+      window.location.href = '/login';
     }
   </script>
 </body>
