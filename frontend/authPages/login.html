@@ -3,8 +3,8 @@
 <html lang="en">
 
 <head>
-    <meta charset ="UTF-8">
-    <meta name ="viewport" content = "width=device-width, 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, 
     initial-scale = 1.0">
     <title>Mr Game & Rate Login Page </title>
     <link rel="stylesheet" href="style.css">
@@ -32,27 +32,43 @@
 
 
 </head>
+
 <body>
     <!-- Login Form Code -->
-    <label for="first">
-        Username:
-    </label>
-    <!-- inputting username -->
-    <input type="text" id="username" placeholder="Enter your Username" required>
-    <label for="password">
-        Password:
-    </label>
-    <!-- inputting password -->
-    <input type="password" id="password" name="password" placeholder="Enter your Password" required>
-    <!-- button for submitting username and password -->
-    <button id="login-button" onclick="loginAuth()">
-        Login
-    </button>
-    <button onclick="registerPage()" id="" register-button">
-        Need to register an account?
-    </button>
+    <header>
+        <h1>Mr Game & Rate</h1>
+    </header>
+    <div class="wrapper">
+        <h1> LOGIN </h1>
+        <div class="input-box">
+            <label for="first">
+                Username:
+            </label>
+            <!-- inputting username -->
+            <input type="text" id="username" placeholder="Enter your Username" required>
+        </div>
+        <div class="input-box">
+            <label for="password">
+                Password:
+            </label>
+            <!-- inputting password -->
+            <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+            <!-- button for submitting username and password -->
+        </div>
+        <p style="color:red; display:none">Please try again</p>
 
-    <button id="google-login">Sign in with Google</button>
+        <button class="btn" id="login-button" onclick="loginAuth()">
+            LOGIN
+        </button>
+        <button class="google-button" id="google-login">
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" class="google-icon">
+            <span class="button-text">Sign in with Google</span>
+        </button>
+        <a style="color:white" href='/register' id="register-button">
+            Need to register a new account?
+        </a>
+    </div>
+
 
     <script>
         const apiBase = 'http://localhost:5000';
@@ -81,10 +97,18 @@
                         window.location.href = '/test-review';
                     } else {
                         console.error('Login failed:', data);
+                        // show please try again message
+                        const errorMessage = document.querySelector('p');
+                        errorMessage.style.display = 'block';
+                        errorMessage.textContent = 'Please try again';
                     }
                 })
                 .catch(error => {
                     console.error('Error during login:', error);
+                    // show please try again message
+                    const errorMessage = document.querySelector('p');
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = 'Please try again';
                 });
         }
 
@@ -105,7 +129,6 @@
                         .then(response => response.json())
                         .then(data => {
                             localStorage.setItem('token', data.token);
-                            // Redirect to the homepage /
                             window.location.href = '/test-review';
                         });
                 })

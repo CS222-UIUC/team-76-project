@@ -30,24 +30,42 @@
 
 <body>
   <!-- Login Form Code -->
-  <label for="first">
-    Username:
-  </label>
-  <!-- inputting username -->
-  <input type="text" id="username" placeholder="Enter your Username" required>
-  <label for="password">
-    Password:
-  </label>
-  <!-- inputting password -->
-  <input type="password" id="password" name="password" placeholder="Enter your Password" required>
-  <!-- button for submitting username and password -->
-  <button id="register-button" onclick="registerAuth()">
-    Register
-  </button>
-  <button onclick="loginPage()" id="" register-button">
-    Already have an account?
-  </button>
-  <button id="google-login">Register with Google</button>
+  <header>
+    <h1>Mr Game & Rate</h1>
+  </header>
+  <div class="wrapper">
+    <h1> REGISTER </h1>
+    <div class="input-box">
+      <label for="first">
+        Username:
+      </label>
+      <!-- inputting username -->
+      <input type="text" id="username" placeholder="Create a Username" required>
+    </div>
+    <div class="input-box">
+      <label for="password">
+        Password:
+      </label>
+      <!-- inputting password -->
+      <input type="password" id="password" name="password" placeholder="Create a Password" required>
+      <!-- button for submitting username and password -->
+    </div>
+
+    <p style="color:red; display:none">Username Taken</p>
+
+
+    <button class="btn" id="register-button" onclick="registerAuth()">
+      REGISTER
+    </button>
+    <button class="google-button" id="google-login">
+      <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" class="google-icon">
+      <span class="button-text">Register with Google</span>
+    </button>
+    <a style="color:white" href='/login' id="register-button">
+      Already have an account?
+    </a>
+  </div>
+
 
   <script>
     const apiBase = 'http://localhost:5000';
@@ -73,10 +91,18 @@
             window.location.href = '/test-review'; // Redirect to dashboard after successful login
           } else {
             console.error('Authentication failed:', data);
+            // Show error message to the user
+            const errorMessage = document.querySelector('p');
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Username Taken';
           }
         })
         .catch(error => {
           console.error('Error during authentication:', error);
+          // Show error message to the user
+          const errorMessage = document.querySelector('p');
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = 'Username Taken';
         });
     }
 
@@ -97,6 +123,7 @@
             .then(response => response.json())
             .then(data => {
               localStorage.setItem('token', data.token);
+              window.location.href = '/test-review'; // Redirect to dashboard after successful login
             });
         })
         .catch((error) => {

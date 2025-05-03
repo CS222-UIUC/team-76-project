@@ -19,16 +19,20 @@ app.get('/test-review', (req,res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend', 'login.html'));
+    res.sendFile(path.join(__dirname, '../frontend/authPages', 'login.html'));
 });
 
 app.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend', 'register.html'));
+    res.sendFile(path.join(__dirname, '../frontend/authPages', 'register.html'));
 });
 
 app.get('/ratings', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend', 'ratings.html'));
 });
+
+app.get('/game/v', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'ratings.html'));
+})
 
 // getting game information
 app.use('/game', gameRoutes);
