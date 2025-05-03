@@ -26,6 +26,8 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    text-align: center;
 }
 .ratings-heading h1{
     font-size: 2.2rem;
@@ -143,4 +145,41 @@ body {
     font-weight: bold;
     font-family: "Verdana", Sans-serif;
     z-index: 1000;
+}
+.rating-input-box {
+    margin: 20px 0;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: #ececec;
+    border-radius: 10px;
+    width: 300px;
+    align-self: center;
+}
+
+.rating-input-box label {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #333;
+}
+
+.rating-input-box input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.rating-input-box button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: rgb(126, 78, 163);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rating-input-box button:hover {
+    background-color: #5e3a7d;
 }
