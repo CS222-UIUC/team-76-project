@@ -26,12 +26,8 @@ app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/authPages', 'register.html'));
 });
 
-app.get('/ratings', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend', 'ratings.html'));
-});
-
-app.get('/game/v', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend', 'ratings.html'));
+app.get('/game-page/:game_id', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'gamePage.html'));
 });
 
 app.get('/genre/:genre_id', (req, res) => {

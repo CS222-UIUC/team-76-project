@@ -1,24 +1,24 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
     box-sizing: border-box;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-#ratings{
+#ratings {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100%;
-    
+
 }
 
-.rating-heading{
+.rating-heading {
     letter-spacing: 1px;
     margin: 30px 0px;
     padding: 10px 20px;
@@ -29,13 +29,15 @@ a{
     width: 100%;
     text-align: center;
 }
-.ratings-heading h1{
+
+.ratings-heading h1 {
     font-size: 2.2rem;
     font-weight: 500;
     background-color: rgb(126, 78, 163);
     color: #ffffff;
     padding: 10px 20px;
 }
+
 .ratings-heading span {
     font-size: 1.3rem;
     color: #ffffff;
@@ -45,7 +47,7 @@ a{
 
 }
 
-.ratings-box-container{
+.ratings-box-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,7 +56,7 @@ a{
 }
 
 .ratings-box {
-    width:500px;
+    width: 500px;
     box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
     background-color: #cdbdbd;
     padding: 20px;
@@ -63,7 +65,7 @@ a{
 }
 
 .profile-img {
-    width:50px;
+    width: 50px;
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
@@ -93,7 +95,7 @@ a{
     letter-spacing: 0.5px;
 }
 
-.name-user span{
+.name-user span {
     color: #5c5b5b;
     font-size: 0.8rem;
 }
@@ -125,17 +127,20 @@ a{
     border-radius: 50%;
     object-fit: cover;
 }
+
 body {
-  background-color: black;
+    background-color: black;
 }
 
 .ratings-box:hover {
     transform: translateY(-10px);
     transition: all ease 0.3s;
 }
+
 .grand-theft-auto {
-    margin-right: 14px; 
+    margin-right: 14px;
 }
+
 .website-title {
     position: absolute;
     top: 20px;
@@ -146,6 +151,7 @@ body {
     font-family: "Verdana", Sans-serif;
     z-index: 1000;
 }
+
 .rating-input-box {
     margin: 20px 0;
     padding: 10px 20px;

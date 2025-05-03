@@ -134,10 +134,12 @@
 
                     if (filteredResults.length > 0) {
                         filteredResults.forEach(item => {
+                            const game_rating = item.rating ? (parseInt(item.rating) / 20 + "/5") : 'N/A';
+
                             const resultItem = document.createElement('div');
-                            resultItem.innerHTML = `<img  style="margin-top:10px" src="https://images.igdb.com/igdb/image/upload/t_720p/${item.cover.image_id}.jpg" height="200">
+                            resultItem.innerHTML = `<a href = "/game-page/${item.id}"><img  style="margin-top:10px" src="https://images.igdb.com/igdb/image/upload/t_720p/${item.cover.image_id}.jpg" height="200"></a>
                                                 <h3>${item.name}</h3>
-                                                <p>Rating: ${item.rating}</p>`;
+                                                <p>Rating: ${game_rating}</p>`;
                             resultsContainer.appendChild(resultItem);
                         });
                     } else {

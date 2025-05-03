@@ -16,6 +16,7 @@ db.exec(`
         game_id INTEGER,
         review TEXT,
         rating INTEGER,
+        username TEXT,
         FOREIGN KEY(user_id) REFERENCES users(id)
     )
 `)

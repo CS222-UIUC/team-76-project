@@ -23,9 +23,13 @@ router.get('/rating/:game_id', (req, res) => {
 // create a new review on a game id
 router.post('/', (req, res) => {
     const { rating, review, game_id } = req.body;
-    console.log(req.user_id);
-    const insertReview = db.prepare(`INSERT INTO reviews (user_id, game_id, review, rating) VALUES (?, ?, ?, ?)`);
-    const result = insertReview.run(req.user_id, game_id, review, rating);
+
+    const userQuery = db.prepare('SELECT username FROM users WHERE id = ?');
+    const user = userQuery.get(req.user_id);
+    console.log(user)
+    console.log(user.username)
+    const insertReview = db.prepare(`INSERT INTO reviews (user_id, game_id, review, rating, username) VALUES (?, ?, ?, ?, ?)`);
+    const result = insertReview.run(req.user_id, game_id, review, rating, user.username);
 
     res.json({id: result.lastInsertRowid, rating, review});
 })

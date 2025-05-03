@@ -21,7 +21,7 @@ async function getGames(genre){
     try {
         if (!ACCESS_TOKEN) await getIGDBAccess();
         const response = await axios.post('https://api.igdb.com/v4/games', 
-            `fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos; where genres = (${genre});`,
+            `fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos, rating; where genres = (${genre});`,
             {
                 headers: {
                     'Client-ID': process.env.CLIENT_ID,
@@ -42,7 +42,7 @@ async function getGamesID(ID){
     try {
         if (!ACCESS_TOKEN) await getIGDBAccess();
         const response = await axios.post('https://api.igdb.com/v4/games', 
-            `fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos; where id = (${ID});`,
+            `fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos, rating; where id = (${ID});`,
             {
                 headers: {
                     'Client-ID': process.env.CLIENT_ID,
@@ -63,7 +63,7 @@ async function getGamesSearch(query){
     try {
         if (!ACCESS_TOKEN) await getIGDBAccess();
         const response = await axios.post('https://api.igdb.com/v4/games', 
-            `search "${query}"; fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos;`,
+            `search "${query}"; fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos, rating;`,
             {
                 headers: {
                     'Client-ID': process.env.CLIENT_ID,
