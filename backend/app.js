@@ -26,6 +26,10 @@ app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend', 'register.html'));
 });
 
+app.get('/ratings', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'ratings.html'));
+});
+
 // getting game information
 app.use('/game', gameRoutes);
 
