@@ -39,7 +39,7 @@ app.get('/genre/:genre_id', (req, res) => {
 });
 
 // getting game information
-app.use('/game', gameRoutes);
+app.use('/game', authMiddleware, gameRoutes);
 
 // CRUD actions on reviews, require JWT auth
 app.use('/reviews', authMiddleware, reviewsRoutes);

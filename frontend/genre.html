@@ -100,7 +100,7 @@
 
   <body>
 
-    <h1 class="title" style="text-align: center; margin-bottom: 10px;">Fighting</h1>
+    <h1 class="title" style="text-align: center; margin-bottom: 10px;">Title</h1>
 
 
     <div class="gametext" id="results"></div>
@@ -119,7 +119,7 @@
         window.location.href = '/';
       }
       // set title
-      document.title = genreMap[genreId];
+      document.querySelector('.title').textContent = genreMap[genreId];
       switch (genreId) {
         case 4:
           document.querySelector('.fighting').classList.add('active');
@@ -139,8 +139,19 @@
       }
 
 
-      fetch(`/game/genre/:${genreId}`)
-        .then(response => response.json())
+      fetch(`/game/genre/:${genreId}`, {
+        method: 'GET',
+        headers: {
+          'authorization': localStorage.getItem('token'),
+        }
+      })
+        .then(response => {
+          if (response.status === 401) {
+            localStorage.removeItem('token');
+            window.location.href = '/login';
+          }
+          return response.json()
+        })
         .then(data => {
           const filteredResults = data
 
@@ -158,6 +169,7 @@
             });
           } else {
             resultsContainer.innerHTML = "<p>No results found.</p>";
+            // redirect to login page if no results found
           }
         })
         .catch(error => {

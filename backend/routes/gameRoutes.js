@@ -8,7 +8,6 @@ const router = express.Router()
 let ACCESS_TOKEN = '';
 
 async function getIGDBAccess() {
-    console.log(`client_id: ${process.env.CLIENT_ID} secret: ${process.env.CLIENT_SECRET} `)
     try {
         const response = await axios.post(
             `https://id.twitch.tv/oauth2/token?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&grant_type=client_credentials`);
@@ -21,7 +20,6 @@ async function getIGDBAccess() {
 async function getGames(genre){
     try {
         if (!ACCESS_TOKEN) await getIGDBAccess();
-        console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
         const response = await axios.post('https://api.igdb.com/v4/games', 
             `fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos; where genres = (${genre});`,
             {
@@ -43,7 +41,6 @@ async function getGames(genre){
 async function getGamesID(ID){
     try {
         if (!ACCESS_TOKEN) await getIGDBAccess();
-        console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
         const response = await axios.post('https://api.igdb.com/v4/games', 
             `fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos; where id = (${ID});`,
             {
@@ -65,7 +62,6 @@ async function getGamesID(ID){
 async function getGamesSearch(query){
     try {
         if (!ACCESS_TOKEN) await getIGDBAccess();
-        console.log(`client id: ${process.env.CLIENT_ID} auth: ${ACCESS_TOKEN}`)
         const response = await axios.post('https://api.igdb.com/v4/games', 
             `search "${query}"; fields cover.image_id, age_ratings, aggregated_rating, first_release_date, genres, name, platforms, storyline, summary, themes, videos;`,
             {

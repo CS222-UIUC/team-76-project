@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game & Rate</title>  
+    <title>Game & Rate</title>
     <style>
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
         }
+
         .topnav {
             background-color: #E8DAFF;
             width: 100vw;
@@ -16,45 +19,50 @@
         }
 
         .topnav a {
-        float: left;
-        color: #000C87;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
+            float: left;
+            color: #000C87;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
         }
 
         .topnav a:hover {
-        background-color: rgb(212, 179, 255);
-        color: 000C87;
+            background-color: rgb(212, 179, 255);
+            color: 000C87;
         }
 
         .topnav a.active {
-        background-color: rgb(212, 179, 255);
-        color: 000C87;
+            background-color: rgb(212, 179, 255);
+            color: 000C87;
         }
+
         .skyimg {
             height: 110px;
             width: 100vw;
             display: block;
             object-fit: cover;
         }
+
         .img {
             width: 60px;
             display: block;
-            margin: auto;    
+            margin: auto;
         }
+
         .mustacheimg {
             width: 200px;
             display: block;
             margin: auto;
         }
+
         .title {
             color: black;
             font-size: 60px;
             font-family: Georgia;
             margin: auto;
         }
+
         .gametext {
             background-color: #E8DAFF;
             font-size: 20px;
@@ -63,6 +71,7 @@
             display: block;
             text-align: center;
         }
+
         .names {
             font-size: small;
             position: fixed;
@@ -76,57 +85,73 @@
     </style>
 
 </head>
-<body style= "background-color: rgb(104, 39, 164);">
-    <img class= "skyimg" src="PixelSky.png">
+
+<body style="background-color: rgb(104, 39, 164);">
+    <img class="skyimg" src="assets/PixelSky.png">
     <div class="topnav">
-        <a href="index.html">Home</a>
-        <a href="fighting.html">Fighting</a>
-        <a href="strategy.html">Strategy</a>
-        <a href="shooter.html">Shooter</a>
-        <a href="racing.html">Racing</a>
-        <a href="roleplay.html">Role Playing</a>
-      </div>
-</head>
-<body>
+        <a class="active" href="/">Home</a>
+        <a class="fighting" href="/genre/4">Fighting</a>
+        <a class="strategy" href="/genre/11">Strategy</a>
+        <a class="shooter" href="/genre/5">Shooter</a>
+        <a class="racing" href="/genre/10">Racing</a>
+        <a class="rpg" href="/genre/12">Role Playing</a>
+    </div>
+    </head>
 
-    <h1 class="title" style="text-align: center;">Search Results</h1>
+    <body>
 
-
-
-    <div class="gametext" id="results"></div>
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const query = params.get('query');
-        const decodedQuery = decodeURIComponent(query);
+        <h1 class="title" style="text-align: center;">Search Results</h1>
 
 
-        // fetch('./games.json')
-        fetch(`/game/search?q=${decodedQuery}`)
 
-        fetch(`/game/search?q=${decodedQuery}`)
-            .then(response => response.json())
-            .then(data => {
-                const filteredResults = data.filter(item => 
-                    item.name.toLowerCase().includes(decodedQuery.toLowerCase()) 
-                );
+        <div class="gametext" id="results"></div>
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('query');
+            const decodedQuery = decodeURIComponent(query);
 
-                const resultsContainer = document.getElementById('results');
-                
-                if (filteredResults.length > 0) {
-                    filteredResults.forEach(item => {
-                        const resultItem = document.createElement('div');
-                        resultItem.innerHTML = `<img  style="margin-top:10px" src="https://images.igdb.com/igdb/image/upload/t_720p/${item.cover.image_id}.jpg" height="200">
-                                                <h3>${item.name}</h3>
-                                                <p>Rating: ${item.rating}</p>`;
-                        resultsContainer.appendChild(resultItem);
-                    });
-                } else {
-                    resultsContainer.innerHTML = "<p>No results found.</p>";
+
+            fetch(`/game/search?q=${decodedQuery}`, {
+                method: 'GET',
+                headers: {
+                    'authorization': localStorage.getItem('token'),
                 }
             })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-    </script>
-</body>
+                .then(response => {
+                    if (response.status === 401) {
+                        localStorage.removeItem('token');
+                        window.location.href = '/login';
+                    }
+
+                    return response.json()
+                })
+                .then(data => {
+                    const filteredResults = data.filter(item =>
+                        item.name.toLowerCase().includes(decodedQuery.toLowerCase())
+                    );
+
+                    const resultsContainer = document.getElementById('results');
+
+                    if (filteredResults.length > 0) {
+                        filteredResults.forEach(item => {
+                            const resultItem = document.createElement('div');
+                            resultItem.innerHTML = `<img  style="margin-top:10px" src="https://images.igdb.com/igdb/image/upload/t_720p/${item.cover.image_id}.jpg" height="200">
+                                                <h3>${item.name}</h3>
+                                                <p>Rating: ${item.rating}</p>`;
+                            resultsContainer.appendChild(resultItem);
+                        });
+                    } else {
+                        resultsContainer.innerHTML = "<p>No results found.</p>";
+                        // redirect to login page if no results found
+
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    // redirect to login page if error occurs
+
+                });
+        </script>
+    </body>
+
 </html>
