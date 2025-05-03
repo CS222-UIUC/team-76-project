@@ -32,7 +32,11 @@ app.get('/ratings', (req, res) => {
 
 app.get('/game/v', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend', 'ratings.html'));
-})
+});
+
+app.get('/genre/:genre_id', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'genre.html'));
+});
 
 // getting game information
 app.use('/game', gameRoutes);
