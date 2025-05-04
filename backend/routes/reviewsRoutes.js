@@ -7,10 +7,27 @@ const router = express.Router()
 router.get('/:game_id', (req, res) => { 
     const { game_id } = req.params;
 
-    const getReviews = db.prepare(`SELECT * FROM reviews WHERE game_id = ?`);
-    const reviews = getReviews.all(game_id);
+    const getReviews = db.prepare(`SELECT * FROM reviews WHERE game_id = ? AND user_id != ?`);
+    const reviews = getReviews.all(game_id, req.user_id);
     res.json(reviews)
 })
+
+router.get('/mine/:game_id', (req, res) => {
+    const { game_id } = req.params;
+
+
+    const getUserReview = db.prepare(`
+        SELECT * FROM reviews 
+        WHERE game_id = ? AND user_id = ?
+    `);
+    const review = getUserReview.get(game_id, req.user_id);
+
+    if (!review) {
+        return res.status(404).json({ message: 'No review found for this game by the user.' });
+    }
+
+    res.json(review);
+});
 
 router.get('/rating/:game_id', (req, res) => {
     const { game_id } = req.params;
