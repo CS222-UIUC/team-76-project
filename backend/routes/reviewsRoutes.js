@@ -52,22 +52,22 @@ router.post('/', (req, res) => {
 })
 
 // update a review
-router.put('/:review_id', (req, res) => {
-    const { review_id } = req.params;
+router.put('/:game_id', (req, res) => {
+    const { game_id } = req.params;
     const { rating, review } = req.body;
 
-    const updatedReview = db.prepare(`UPDATE reviews SET rating = ?, review = ? WHERE id = ?`);
-    updatedReview.run(rating, review, review_id);
+    const updatedReview = db.prepare(`UPDATE reviews SET rating = ?, review = ? WHERE game_id = ? AND user_id = ?`);
+    updatedReview.run(rating, review, game_id, req.user_id);
 
     res.json({message: "Updated review"});
 })
 
 // delete a review
-router.delete('/:review_id', (req, res) => {
-    const { review_id } = req.params;
+router.delete('/:game_id', (req, res) => {
+    const { game_id } = req.params;
 
-    const deleteReview = db.prepare(`DELETE FROM reviews WHERE id = ?`);
-    deleteReview.run(review_id)
+    const deleteReview = db.prepare(`DELETE FROM reviews WHERE game_id = ? AND user_id = ?`);
+    deleteReview.run(game_id, req.user_id)
     res.json({message: "Deleted"})
 })
 

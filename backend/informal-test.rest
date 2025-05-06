@@ -12,8 +12,8 @@ POST http://localhost:5000/auth/login
 Content-Type: application/json
 
 {
-    "username": "myusername",
-    "password": "pass1234"
+    "username": "user",
+    "password": "pass"
 }
 
 
@@ -30,7 +30,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2MzEx
 
 ### POST /reviews/
 POST http://localhost:5000/reviews/
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2MzEzMDE3LCJleHAiOjE3NDYzOTk0MTd9.H5hfR-S7ml9iEJaQIoQWlKn2DEVifAC0S89EU4192P8
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzQ2NTQ5NTYzLCJleHAiOjE3NDY2MzU5NjN9.JTGZqzK-AZ1Bf3M3DgUKAd6GM7z9GiQjKGdrbK8YXE4
 Content-Type: application/json
 
 {
@@ -41,11 +41,15 @@ Content-Type: application/json
 
 ### GET /reviews/rating/57016
 GET http://localhost:5000/reviews/rating/57016
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2MzEyNjAwLCJleHAiOjE3NDYzOTkwMDB9.vPd9Jga64CD6nIMUM_95WmEW8iFjm8JgFXyYdCjYXtc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2NTQ4MjQ0LCJleHAiOjE3NDY2MzQ2NDR9._RlkuoG2v-q9kPuQQNAKqpcD8cnX7kD7_mnBZZFhUAw
 
 ### GET /reviews/
 GET http://localhost:5000/reviews/57016
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2MzEyNjAwLCJleHAiOjE3NDYzOTkwMDB9.vPd9Jga64CD6nIMUM_95WmEW8iFjm8JgFXyYdCjYXtc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2NTQ4MTY3LCJleHAiOjE3NDY2MzQ1Njd9.ks7lE-pqfwKj9LfOMlNq4htDlQk90MonXsjAqBbvazc
+
+### GET /reviews/mine/57016
+GET http://localhost:5000/reviews/mine/57016
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2NTQ4MTY3LCJleHAiOjE3NDY2MzQ1Njd9.ks7lE-pqfwKj9LfOMlNq4htDlQk90MonXsjAqBbvazc
 
 
 ### UPDATE /reviews/1
