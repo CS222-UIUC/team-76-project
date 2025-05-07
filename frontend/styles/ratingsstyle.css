@@ -189,3 +189,152 @@ body {
 .rating-input-box button:hover {
     background-color: #5e3a7d;
 }
+
+/* Game section container */
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #cdbdbd;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    border-radius: 10px;
+}
+
+/* Cover image */
+.game .img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+/* Game title */
+.game .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #3d3d3d;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Game summary */
+.game .summary {
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* My review container styling */
+#my-review-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Container for my review (wraps input + review box) */
+#my-review-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Input box for adding review - already has base styles */
+.rating-input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    background-color: #ececec;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.rating-input-box input[type="number"],
+.rating-input-box input[type="text"] {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.rating-input-box button {
+    padding: 8px 16px;
+    background-color: rgb(126, 78, 163);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.rating-input-box button:hover {
+    background-color: #5e3a7d;
+}
+
+/* Your review box (same style as other reviews) */
+#my-review {
+    width: 500px;
+    background-color: #cdbdbd;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Button container inside your review */
+#my-review .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Edit and Delete buttons */
+#my-review .edit-button,
+#my-review .delete-button {
+    padding: 6px 12px;
+    background-color: #8a5ca1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#my-review .edit-button:hover,
+#my-review .delete-button:hover {
+    background-color: #5e3a7d;
+}
+
+/* "Your Review" label */
+#my-review .name-user strong {
+    font-size: 1.2rem;
+    color: #3d3d3d;
+}
+
+/* Stars inside your review */
+#my-review .reviews {
+    color: gold;
+    font-size: 1.1rem;
+    display: flex;
+    gap: 2px;
+}
+
+/* Comment text */
+#my-review .client-comment p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.4;
+    margin-top: 10px;
+}
