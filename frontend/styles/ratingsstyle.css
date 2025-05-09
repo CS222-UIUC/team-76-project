@@ -1,0 +1,340 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+#ratings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.rating-heading {
+    letter-spacing: 1px;
+    margin: 30px 0px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.ratings-heading h1 {
+    font-size: 2.2rem;
+    font-weight: 500;
+    background-color: rgb(126, 78, 163);
+    color: #ffffff;
+    padding: 10px 20px;
+}
+
+.ratings-heading span {
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+}
+
+.ratings-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.ratings-box {
+    width: 500px;
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+    background-color: #cdbdbd;
+    padding: 20px;
+    margin: 15px;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.name-user {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-user strong {
+    color: #3d3d3d;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.name-user span {
+    color: #5c5b5b;
+    font-size: 0.8rem;
+}
+
+.reviews {
+    color: gold;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.box-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.client-comment {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.4;
+}
+
+.grand-theft-auto img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+body {
+    background-color: black;
+}
+
+.ratings-box:hover {
+    transform: translateY(-10px);
+    transition: all ease 0.3s;
+}
+
+.grand-theft-auto {
+    margin-right: 14px;
+}
+
+.website-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.8rem;
+    color: white;
+    font-weight: bold;
+    font-family: "Verdana", Sans-serif;
+    z-index: 1000;
+}
+
+.rating-input-box {
+    margin: 20px 0;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: #ececec;
+    border-radius: 10px;
+    width: 300px;
+    align-self: center;
+}
+
+.rating-input-box label {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #333;
+}
+
+.rating-input-box input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.rating-input-box button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: rgb(126, 78, 163);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rating-input-box button:hover {
+    background-color: #5e3a7d;
+}
+
+/* Game section container */
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #cdbdbd;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    border-radius: 10px;
+}
+
+/* Cover image */
+.game .img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+/* Game title */
+.game .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #3d3d3d;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Game summary */
+.game .summary {
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* My review container styling */
+#my-review-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Container for my review (wraps input + review box) */
+#my-review-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Input box for adding review - already has base styles */
+.rating-input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    background-color: #ececec;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.rating-input-box input[type="number"],
+.rating-input-box input[type="text"] {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.rating-input-box button {
+    padding: 8px 16px;
+    background-color: rgb(126, 78, 163);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.rating-input-box button:hover {
+    background-color: #5e3a7d;
+}
+
+/* Your review box (same style as other reviews) */
+#my-review {
+    width: 500px;
+    background-color: #cdbdbd;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Button container inside your review */
+#my-review .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Edit and Delete buttons */
+#my-review .edit-button,
+#my-review .delete-button {
+    padding: 6px 12px;
+    background-color: #8a5ca1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#my-review .edit-button:hover,
+#my-review .delete-button:hover {
+    background-color: #5e3a7d;
+}
+
+/* "Your Review" label */
+#my-review .name-user strong {
+    font-size: 1.2rem;
+    color: #3d3d3d;
+}
+
+/* Stars inside your review */
+#my-review .reviews {
+    color: gold;
+    font-size: 1.1rem;
+    display: flex;
+    gap: 2px;
+}
+
+/* Comment text */
+#my-review .client-comment p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.4;
+    margin-top: 10px;
+}

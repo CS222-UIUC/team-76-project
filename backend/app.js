@@ -19,15 +19,23 @@ app.get('/test-review', (req,res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend', 'login.html'));
+    res.sendFile(path.join(__dirname, '../frontend/auth', 'login.html'));
 });
 
 app.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend', 'register.html'));
+    res.sendFile(path.join(__dirname, '../frontend/auth', 'register.html'));
+});
+
+app.get('/game-page/:game_id', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'gamePage.html'));
+});
+
+app.get('/genre/:genre_id', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'genre.html'));
 });
 
 // getting game information
-app.use('/game', gameRoutes);
+app.use('/game', authMiddleware, gameRoutes);
 
 // CRUD actions on reviews, require JWT auth
 app.use('/reviews', authMiddleware, reviewsRoutes);

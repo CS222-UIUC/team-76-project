@@ -12,7 +12,7 @@ function authMiddleware (req, res, next) {
 }
 // const express = require('express')
 // const db = require('../db.js')
-}
+// }
 // const express = require('express')
 // const db = require('../db.js')
 
@@ -48,4 +48,4 @@ function authMiddleware (req, res, next) {
 //     next();
 // }
 
-export default authMiddleware
+module.exports = authMiddleware;

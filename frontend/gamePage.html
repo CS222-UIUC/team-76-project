@@ -1,0 +1,530 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ratings</title>
+
+    <style type="text/css">
+
+    </style>
+
+    <!-- Stylesheet --->
+    <link rel="stylesheet" href="../styles/ratingsstyle.css" />
+    <!--using font awesome-->
+    <script src="https://kit.fontawesome.com/d347ec4c18.js" crossorigin="anonymous"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .topnav {
+            background-color: #E8DAFF;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        .topnav a {
+            float: left;
+            color: #000C87;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: rgb(212, 179, 255);
+            color: 000C87;
+        }
+
+        .topnav a.active {
+            background-color: rgb(212, 179, 255);
+            color: 000C87;
+        }
+
+        .skyimg {
+            height: 110px;
+            width: 100vw;
+            display: block;
+            object-fit: cover;
+        }
+
+        .img {
+            width: 60px;
+            display: block;
+            margin: auto;
+        }
+
+        .mustacheimg {
+            width: 200px;
+            display: block;
+            margin: auto;
+        }
+
+        .title {
+            color: black;
+            font-size: 60px;
+            font-family: Georgia;
+            margin: auto;
+        }
+
+        .search {
+            background-color: #E8DAFF;
+            font-size: 20px;
+            font-family: Georgia;
+            margin: auto;
+            display: block;
+            text-align: center;
+        }
+
+        .names {
+            font-size: small;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: #E8DAFF;
+            padding: 10px 0;
+            font-family: Georgia, serif;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: rgb(104, 39, 164);">
+    <img class="skyimg" src="/assets/PixelSky.png">
+
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a class="fighting" href="/genre/4">Fighting</a>
+        <a class="strategy" href="/genre/11">Strategy</a>
+        <a class="shooter" href="/genre/5">Shooter</a>
+        <a class="racing" href="/genre/10">Racing</a>
+        <a class="rpg" href="/genre/12">Role Playing</a>
+    </div>
+    <!-- Game cover + summary -->
+    <div class="game">
+        <img class="img" src="https://images.igdb.com/igdb/image/upload/t_720p/co5k7b.jpg" alt="Game Cover">
+        <h1 class="title">Super Mario Bros.</h1>
+        <p class="summary">A remaster of the original Super Mario Bros., released exclusively as part of the Super Mario
+            All-Stars bundle. </p>
+    </div>
+    <!-- Ratings --->
+    <section id="ratings">
+        <div id="my-review-container">
+            <div class="rating-input-box">
+                <label for="user-rating">Your Rating:</label>
+                <input type="number" id="user-rating" name="user-rating" min="1" max="5" placeholder="1 to 5">
+                <input type="text" id="reviewText" placeholder="Write your review here...">
+                <button type="button">Submit</button>
+            </div>
+
+            <div class="ratings-box" id="my-review">
+
+                <div class="box-top">
+                    <div class="buttons">
+                        <button class="edit-button">Edit</button>
+                        <button class="delete-button">Delete</button>
+                    </div>
+                    <div class="profile">
+                        <div class="name-user">
+                            <strong>Your Review</strong>
+                        </div>
+                    </div>
+                    <!--reviews --->
+                    <div class="reviews">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+
+                </div>
+
+                <!--comments --->
+                <div class="client-comment">
+                    <p>cool game!.</p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- heading --->
+        <div class="ratings-heading">
+            <span> Comments</span>
+            <h1>Gamers say</h1>
+        </div>
+        <!-- ratings-box-container --->
+        <!-- ratings-box-container --->
+        <div class="ratings-box-container">
+
+            <!-- BOX - 1 --->
+            <div class="ratings-box">
+
+                <div class="box-top">
+                    <div class="profile">
+                        <div class="name-user">
+                            <strong>Veronica Lao</strong>
+                            <span>@veronicalao</span>
+                        </div>
+                    </div>
+                    <!--reviews --->
+                    <div class="reviews">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+
+                </div>
+
+                <!--comments --->
+                <div class="client-comment">
+                    <p>cool game!.</p>
+                </div>
+
+            </div>
+            <!-- BOX - 2 --->
+            <div class="ratings-box">
+
+                <div class="box-top">
+                    <div class="profile">
+                        <div class="grand-theft-auto">
+                            <img
+                                src="https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg">
+                        </div>
+                        <div class="name-user">
+                            <strong>@arjungupta</strong>
+                        </div>
+                    </div>
+                    <!--reviews --->
+                    <div class="reviews">
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+
+                </div>
+
+                <!--comments --->
+                <div class="client-comment">
+                    <p>goofy ahh game</p>
+                </div>
+            </div>
+
+
+    </section>
+
+    <script>
+
+        const apiBase = 'http://localhost:5000'
+
+        // get game id from last part of the url
+        const url = window.location.href;
+        const gameId = url.substring(url.lastIndexOf('/') + 1);
+
+        // set cover image, title and summary
+        const coverImage = document.querySelector('.img');
+        const title = document.querySelector('.title');
+        const summary = document.querySelector('.summary');
+        fetchGameData();
+
+        async function loadUserReview(gameId) {
+            try {
+                const response = await fetch(`/reviews/mine/${gameId}`, {
+                    method: 'GET',
+                    headers: {
+                        'authorization': localStorage.getItem('token'),
+                    }
+                });
+                if (response.status === 401) {
+                    localStorage.removeItem('token');
+                    window.location.href = '/login';
+                }
+                console.log(`response: ${response}`);
+                const data = await response.json();
+
+                const container = document.getElementById('my-review-container');
+                container.innerHTML = ''; // clear any previous content
+                console.log(`data: ${data}`);
+                if (!data || !data.review) {
+                    // No review exists
+                    container.innerHTML = `
+                <div class="rating-input-box">
+                    <label for="user-rating">Your Rating:</label>
+                    <input type="number" id="user-rating" name="user-rating" min="1" max="5" placeholder="1 to 5">
+                    <input type="text" id="reviewText" placeholder="Write your review here...">
+                    <button type="button" onclick="submitReview(${gameId})">Submit</button>
+                </div>
+            `;
+                } else {
+                    // Review exists
+                    const stars = getStarIcons(data.rating);
+                    container.innerHTML = `
+                <div class="ratings-box" id="my-review">
+                    <div class="box-top">
+                        <div class="buttons">
+                             <button class="edit-button" onclick="editReview(${data.rating}, '${escapeHtml(data.review)}')">Edit</button>
+                <button class="delete-button" onclick="deleteReview(${data.game_id})">Delete</button>
+                        </div>
+                        <div class="profile">
+                            <div class="name-user">
+                                <strong>Your Review</strong>
+                            </div>
+                        </div>
+                        <div class="reviews">${stars}</div>
+                    </div>
+                    <div class="client-comment">
+                        <p>${escapeHtml(data.review)}</p>
+                    </div>
+                </div>
+            `;
+                }
+            } catch (err) {
+                console.error('Failed to load review:', err);
+            }
+        }
+
+        function editReview(currentRating, currentText) {
+            const container = document.getElementById('my-review-container');
+
+            container.innerHTML = `
+        <div class="rating-input-box">
+            <label for="edit-rating">Your Rating:</label>
+            <input type="number" id="edit-rating" min="1" max="5" value="${currentRating}">
+            <input type="text" id="edit-review-text" value="${escapeHtml(currentText)}">
+            <button type="button" onclick="saveEditedReview()">Save</button>
+        </div>
+        `;
+        }
+
+        async function saveEditedReview() {
+            const rating = document.getElementById('edit-rating').value;
+            const reviewText = document.getElementById('edit-review-text').value;
+
+            if (!rating || !reviewText) {
+                alert('Both fields are required.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/reviews/${gameId}`, {
+                    method: 'PUT', // or PATCH depending on your API
+                    headers: {
+                        'authorization': localStorage.getItem('token'),
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ rating, review: reviewText }),
+                });
+
+                if (response.ok) {
+                    loadUserReview(gameId); // Re-render updated review
+                } else {
+                    alert('Failed to update review.');
+                }
+            } catch (error) {
+                console.error('Edit error:', error);
+            }
+        }
+
+        async function deleteReview(gameId) {
+            if (!confirm('Are you sure you want to delete your review?')) return;
+
+            try {
+                const response = await fetch(`/reviews/${gameId}`, {
+                    headers: {
+                        'authorization': localStorage.getItem('token')
+                    },
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    loadUserReview(gameId); // Show the input box again
+                } else {
+                    alert('Failed to delete review.');
+                }
+            } catch (error) {
+                console.error('Delete error:', error);
+            }
+        }
+
+        function getStarIcons(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                stars += i <= rating
+                    ? '<i class="fa-solid fa-star"></i>'
+                    : '<i class="fa-regular fa-star"></i>';
+            }
+            return stars;
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/[&<>"']/g, match => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;',
+            }[match]));
+        }
+
+        async function submitReview() {
+            const reviewText = document.getElementById('reviewText').value;
+            const rating = document.getElementById('user-rating').value;
+
+            const response = await fetch(`${apiBase}/reviews/`, {
+                method: 'POST',
+                headers: {
+                    'authorization': localStorage.getItem('token'),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ review: reviewText, rating: rating, game_id: gameId })
+            });
+
+            if (response.ok) {
+                reviews = await fetchReviews();
+                displayReviews(reviews);
+            } else {
+                console.error('Failed to add review:', response.statusText);
+            }
+        }
+
+
+        function displayReviews(reviews) {
+            const reviewsContainer = document.querySelector('.ratings-box-container');
+            reviewsContainer.innerHTML = '';
+            loadUserReview(gameId);
+
+
+
+            reviews.forEach(review => {
+                const reviewElement = document.createElement('div');
+                reviewElement.classList.add('ratings-box');
+
+                const stars = getStarIcons(review.rating);
+
+                reviewElement.innerHTML = `
+            <div class="box-top">
+                <div class="profile">
+                    <div class="grand-theft-auto">
+                        <img src="https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg">
+                    </div>
+                    <div class="name-user">
+                        <strong>@${escapeHtml(review.username)}</strong>
+                    </div>
+                </div>
+                <div class="reviews">${stars}</div>
+            </div>
+            <div class="client-comment">
+                <p>${escapeHtml(review.review)}</p>
+            </div>
+        `;
+
+                reviewsContainer.appendChild(reviewElement);
+            });
+        }
+
+        // attach addReview function to the button
+        // document.querySelector('button').addEventListener('click', addReview);
+
+        async function fetchReviews() {
+            console.log(`fetching at ${apiBase}/reviews/`);
+            const response = await fetch(`${apiBase}/reviews/${gameId}`, {
+                method: 'GET',
+                headers: {
+                    'authorization': localStorage.getItem('token'),
+                }
+            });
+            if (response.ok) {
+                const reviews = await response.json();
+                return reviews;
+            } else {
+                // redirect to login page if token is invalid
+                if (response.status === 401) {
+                    localStorage.removeItem('token');
+                    window.location.href = '/login';
+                }
+                console.error('Failed to fetch reviews:', response.statusText);
+            }
+        }
+
+        async function fetchMyReview() {
+            const response = await fetch(`${apiBase}/reviews/myreview/${gameId}`, {
+                method: 'GET',
+                headers: {
+                    'authorization': localStorage.getItem('token'),
+                }
+            }).then(response => {
+                if (response.status === 401) {
+                    localStorage.removeItem('token');
+                    window.location.href = '/login';
+                }
+                else if (response.status === 404) {
+                    // hide my review and add review button
+                    document.getElementById('my-review').style.display = 'none';
+                    document.querySelector('.rating-input-box').style.display = 'block';
+                }
+                return response;
+            })
+            if (response.ok) {
+                const myReview = await response.json();
+                return myReview;
+            } else {
+                console.error('Failed to fetch my review:', response.statusText);
+            }
+        }
+
+        async function fetchGameData() {
+            const response = await fetch(`${apiBase}/game/id/${gameId}`, {
+                method: 'GET',
+                headers: {
+                    'authorization': localStorage.getItem('token'),
+                }
+            }).then(response => {
+                if (response.status === 401) {
+                    localStorage.removeItem('token');
+                    window.location.href = '/login';
+                }
+                return response;
+            });
+            if (response.ok) {
+                const gameData = await response.json();
+                console.log(gameData);
+                coverImage.src = `https://images.igdb.com/igdb/image/upload/t_720p/${gameData[0].cover.image_id}.jpg`;
+                title.textContent = gameData[0].name;
+                summary.textContent = gameData[0].summary;
+            } else {
+                console.error('Failed to fetch game data:', response.statusText);
+            }
+        }
+
+
+
+        async function run() {
+            reviews = await fetchReviews();
+            if (reviews) {
+                displayReviews(reviews);
+            } else {
+                console.error('No reviews found');
+            }
+        }
+
+        if (localStorage.getItem('token') && localStorage.getItem('token') !== 'undefined') {
+            run();
+        }
+        else {
+            // Redirect to login page if token is invalid
+            window.location.href = '/login';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,60 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game & Rate</title>  
+    <title>Game & Rate</title>
     <style>
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
         }
+
         .topnav {
-        background-color: #E8DAFF;
-        width: 100vw;
-        overflow: hidden;
+            background-color: #E8DAFF;
+            width: 100vw;
+            overflow: hidden;
         }
 
         .topnav a {
-        float: left;
-        color: #000C87;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
+            float: left;
+            color: #000C87;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
         }
 
         .topnav a:hover {
-        background-color: rgb(212, 179, 255);
-        color: 000C87;
+            background-color: rgb(212, 179, 255);
+            color: 000C87;
         }
 
         .topnav a.active {
-        background-color: rgb(212, 179, 255);
-        color: 000C87;
+            background-color: rgb(212, 179, 255);
+            color: 000C87;
         }
+
         .skyimg {
             height: 110px;
             width: 100vw;
             display: block;
             object-fit: cover;
         }
+
         .img {
             width: 60px;
             display: block;
             margin: auto;
         }
+
         .mustacheimg {
             width: 200px;
             display: block;
             margin: auto;
         }
+
         .title {
             color: black;
             font-size: 60px;
             font-family: Georgia;
             margin: auto;
         }
+
         .search {
             background-color: #E8DAFF;
             font-size: 20px;
@@ -63,6 +71,7 @@
             display: block;
             text-align: center;
         }
+
         .names {
             font-size: small;
             position: fixed;
@@ -76,59 +85,62 @@
     </style>
 
 </head>
-<body style= "background-color: rgb(104, 39, 164);">
-    <img class= "skyimg" src="PixelSky.png">
+
+<body style="background-color: rgb(104, 39, 164);">
+    <img class="skyimg" src="/assets/PixelSky.png">
 
     <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="fighting.html">Fighting</a>
-        <a href="strategy.html">Strategy</a>
-        <a href="shooter.html">Shooter</a>
-        <a href="racing.html">Racing</a>
-        <a href="roleplay.html">Role Playing</a>
-      </div>
+        <a class="active" href="/">Home</a>
+        <a class="fighting" href="/genre/4">Fighting</a>
+        <a class="strategy" href="/genre/11">Strategy</a>
+        <a class="shooter" href="/genre/5">Shooter</a>
+        <a class="racing" href="/genre/10">Racing</a>
+        <a class="rpg" href="/genre/12">Role Playing</a>
+    </div>
+
     <body class="title">
         <p style="text-align: center;">
             Mr Game & Rate
         </p>
     </body>
-        <p style="text-align: center; font-size: x-large; color: rgb(0, 0, 0);">
-            A Gaming Community
-        </p>
-        <img class= "mustacheimg" src="Mustache.png" style="margin-bottom: 10px;">
+    <p style="text-align: center; font-size: x-large; color: rgb(0, 0, 0);">
+        A Gaming Community
+    </p>
+    <img class="mustacheimg" src="/assets/Mustache.png" style="margin-bottom: 10px;">
 
-        <input id="searchInput" class="search" type="text" placeholder="Find your next game!" style="margin-bottom: 10px;">
-        <button id="searchbutton" class="search">Search</button>
-        <div class="search-container" style="text-align: center; margin-bottom: 10px;">
-            <img class="star-img" src="mariostar.png" alt="Star" style="width: 50px; vertical-align: middle;">
-            <img class="star-img" src="mariostar.png" alt="Star" style="width: 50px; vertical-align: middle;">
-            <img class="star-img" src="mariostar.png" alt="Star" style="width: 50px; vertical-align: middle;">
-            <img class="star-img" src="mariostar.png" alt="Star" style="width: 50px; vertical-align: middle;">
-            <img class="star-img" src="mariostar.png" alt="Star" style="width: 50px; vertical-align: middle;">
-        </div>
-        <img class= "img" src="gamer.png" style="margin-top: 80px;">
-        <p class="names">By: Maahum, Vrushi, Mathew, and Sara :)</p>
-   
-        <script>
-            const searchInput = document.getElementById("searchInput");
-            const searchButton = document.getElementById("searchbutton");
-        
-            searchButton.addEventListener("click", function() {
+    <input id="searchInput" class="search" type="text" placeholder="Find your next game!" style="margin-bottom: 10px;">
+    <button id="searchbutton" class="search">Search</button>
+    <div class="search-container" style="text-align: center; margin-bottom: 10px;">
+        <img class="star-img" src="/assets/mariostar.png" alt="Star" style="width: 50px; vertical-align: middle;">
+        <img class="star-img" src="assets/mariostar.png" alt="Star" style="width: 50px; vertical-align: middle;">
+        <img class="star-img" src="assets/mariostar.png" alt="Star" style="width: 50px; vertical-align: middle;">
+        <img class="star-img" src="assets/mariostar.png" alt="Star" style="width: 50px; vertical-align: middle;">
+        <img class="star-img" src="assets/mariostar.png" alt="Star" style="width: 50px; vertical-align: middle;">
+    </div>
+    <img class="img" src="/assets/gamer.png" style="margin-top: 80px;">
+    <p class="names">By: Maahum, Vrushi, Mathew, and Sara :)</p>
+
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const searchButton = document.getElementById("searchbutton");
+
+        searchButton.addEventListener("click", function () {
+            performSearch();
+        });
+        searchInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
                 performSearch();
-            });
-            searchInput.addEventListener("keydown", function(event) {
-                if (event.key === "Enter") {
-                    performSearch();
-                }
-            });
-        
-            function performSearch() {
-                const searchQuery = searchInput.value;
-        
-                if (searchQuery.trim() !== "") {
-                    window.location.href = "searchresults.html?query=" + encodeURIComponent(searchQuery);
-                }
             }
-        </script>
+        });
+
+        function performSearch() {
+            const searchQuery = searchInput.value;
+
+            if (searchQuery.trim() !== "") {
+                window.location.href = "searchresults.html?query=" + encodeURIComponent(searchQuery);
+            }
+        }
+    </script>
 </body>
+
 </html>
